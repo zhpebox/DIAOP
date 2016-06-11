@@ -11,6 +11,8 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 //把此类sheng声明一个切面，放到IOC容器，在声明为切面
@@ -18,8 +20,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 	
+	/**
+	 * 定义一个公用的切入点，表达式
+	 * @param joinPoint
+	 */
+	@Pointcut("execution(public * *(..))")
+	public void declareJoinPointExpression(){}
+	
 	//该方法为一个前置通知
-	@Before("execution(public * *(..))")
+//	@Before("execution(public * *(..))")
+	@Order(1)
+	@Before("declareJoinPointExpression()")
 	public void beforeMethod(JoinPoint joinPoint){
 		String methodName = joinPoint.getSignature().getName();
 		List<Object> args = Arrays.asList(joinPoint.getArgs());
