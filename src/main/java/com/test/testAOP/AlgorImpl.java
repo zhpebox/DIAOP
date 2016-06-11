@@ -15,4 +15,9 @@ public class AlgorImpl implements IAlgor {
 		return i - j;
 	}
 
+	@Override
+	public int div(int i, int j) {
+		return i / j;
+	}
+
 }

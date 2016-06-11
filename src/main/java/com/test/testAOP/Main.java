@@ -18,5 +18,8 @@ public class Main {
 		
 		float result1 = a.sub(6, 5);
 		System.out.println(result1);
+		
+//		int result3 = a.div(6, 0);
+//		System.out.println(result3);
 	}
 }
